@@ -33,5 +33,13 @@
             android:layout_height="wrap_content"
             android:onClick="onNextPageButtonPressed"
             android:text="Goto Page 4" />
+
+        <EditText
+            android:id="@+id/arrayLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Length of array"
+            android:inputType="text" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

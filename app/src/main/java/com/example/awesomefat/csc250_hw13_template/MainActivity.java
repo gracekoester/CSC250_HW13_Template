@@ -5,12 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
 {
     private Button page2Button;
     private Button page3Button;
     private Button page4Button;
+    private EditText arrayLength;
 
     private MyObject obj;
     private int[] ar;
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity
         this.page2Button = (Button)this.findViewById(R.id.page2Button);
         this.page3Button = (Button)this.findViewById(R.id.page3Button);
         this.page4Button = (Button)this.findViewById(R.id.page4Button);
+        this.arrayLength = (EditText)this.findViewById(R.id.arrayLength);
     }
 
     private void printArray()
@@ -42,6 +47,22 @@ public class MainActivity extends AppCompatActivity
         {
             System.out.println(this.ar[i]);
         }
+    }
+
+    public static int[] sort(int ar[])
+    {
+        for(int i = 0; i <ar.length -1; i++)
+        {
+            int index = i;
+            for (int j = i + 1; j < ar.length; j++)
+                if (ar[j] < ar[index])
+                    index = j;
+            int lower = ar[index];
+            ar[index] = ar[i];
+            ar[i] = lower;
+
+        }
+        return ar;
     }
 
     @Override
@@ -58,7 +79,13 @@ public class MainActivity extends AppCompatActivity
     {
         if(v == this.page2Button)
         {
-            System.out.println(this.ar);
+            Random r = new Random();
+            String length = arrayLength.getText().toString();
+            this.ar = new int[Integer.parseInt(length)];
+            for(int i = 0; i < this.ar.length; i++)
+            {
+                this.ar[i] = r.nextInt();
+            }
             Intent i = new Intent(this, Screen2.class);
             i.putExtra("myAR", this.ar);
             this.startActivity(i);
